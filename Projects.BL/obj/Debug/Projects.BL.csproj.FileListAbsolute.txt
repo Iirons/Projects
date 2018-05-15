@@ -1,0 +1,6 @@
+C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Projects.BL.dll
+C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Projects.BL.pdb
+C:\Users\Олег\source\repos\Projects\Projects.BL\obj\Debug\Projects.BL.csprojAssemblyReference.cache
+C:\Users\Олег\source\repos\Projects\Projects.BL\obj\Debug\Projects.BL.csproj.CoreCompileInputs.cache
+C:\Users\Олег\source\repos\Projects\Projects.BL\obj\Debug\Projects.BL.dll
+C:\Users\Олег\source\repos\Projects\Projects.BL\obj\Debug\Projects.BL.pdb

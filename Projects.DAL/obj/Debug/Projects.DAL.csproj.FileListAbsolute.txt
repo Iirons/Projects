@@ -1,0 +1,8 @@
+C:\Users\Олег\source\repos\Projects\Projects.DAL\bin\Debug\Projects.mdf
+C:\Users\Олег\source\repos\Projects\Projects.DAL\bin\Debug\Projects_log.ldf
+C:\Users\Олег\source\repos\Projects\Projects.DAL\bin\Debug\Projects.DAL.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL\bin\Debug\Projects.DAL.pdb
+C:\Users\Олег\source\repos\Projects\Projects.DAL\obj\Debug\Projects.DAL.csprojAssemblyReference.cache
+C:\Users\Олег\source\repos\Projects\Projects.DAL\obj\Debug\Projects.DAL.csproj.CoreCompileInputs.cache
+C:\Users\Олег\source\repos\Projects\Projects.DAL\obj\Debug\Projects.DAL.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL\obj\Debug\Projects.DAL.pdb

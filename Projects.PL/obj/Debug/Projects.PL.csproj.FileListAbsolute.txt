@@ -1,0 +1,10 @@
+C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects.PL.exe.config
+C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects.PL.exe
+C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects.PL.pdb
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.csprojAssemblyReference.cache
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.Form1.resources
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.Properties.Resources.resources
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.csproj.GenerateResource.cache
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.csproj.CoreCompileInputs.cache
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.exe
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.pdb

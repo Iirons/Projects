@@ -31,10 +31,11 @@ namespace Projects.DAL.Repositories
 
         public void Create(Project item)
         {
-            string sqlString = "Insert into Project (Name) "
-            + "values(@Name)";
+            string sqlString = "Insert into Project (Name,ManagerId) "
+            + "values(@Name,@ManagerId)";
             SqlCommand command = new SqlCommand(sqlString, sqlConnection);
-            command.Parameters.Add(new SqlParameter("@Name", SqlDbType.NVarChar, 50)).Value = item.Name;
+            command.Parameters.AddWithValue("@Name", item.Name);
+            command.Parameters.AddWithValue("@ManagerId", item.ManagerId);
             command.ExecuteNonQuery();
 
         }
@@ -49,8 +50,9 @@ namespace Projects.DAL.Repositories
 
         public Project Get(int id)
         {
-            string sqlString = "Select * from Project WHERE";
+            string sqlString = "Select * from Project WHERE id=@id";
             SqlCommand command = new SqlCommand(sqlString, sqlConnection);
+            command.Parameters.AddWithValue("@id", id);
             using (SqlDataReader reader = command.ExecuteReader())
             {
                 if (reader.Read())
@@ -58,6 +60,7 @@ namespace Projects.DAL.Repositories
                     var projects = new Project();
                     projects.Id = reader.GetInt32(0);
                     projects.Name = reader.GetString(1);
+                    projects.ManagerId = reader.GetInt32(2);
                     return projects;
                 }
                 else
@@ -78,6 +81,7 @@ namespace Projects.DAL.Repositories
                     var projects = new Project();
                     projects.Id = reader.GetInt32(0);
                     projects.Name = reader.GetString(1);
+                    projects.ManagerId = reader.GetInt32(2);
                     yield return projects;
                 }
             }
@@ -86,10 +90,11 @@ namespace Projects.DAL.Repositories
 
         public void Update(Project item)
         {
-            string sqlString = "UPDATE Project SET Name=@Name, ExecutorId WHERE id=@id";
+            string sqlString = "UPDATE Project SET Name=@Name,ManagerId=@ManagerId WHERE id=@id";
             SqlCommand command = new SqlCommand(sqlString, sqlConnection);
             command.Parameters.AddWithValue("@id", item.Id);
             command.Parameters.AddWithValue("@Name", item.Name);
+            command.Parameters.AddWithValue("@ManagerId",item.ManagerId);
             command.ExecuteNonQuery();
         }
     }
