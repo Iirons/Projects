@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Projects.DAL.Domain
 {
-    class Manager
+    public class Manager
     {
         public int Id { get; set; }
         public string Name { get; set; }

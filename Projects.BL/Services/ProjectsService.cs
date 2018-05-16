@@ -5,26 +5,55 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projects.BL.DTO;
-
-
+using Projects.DAL.Repositories;
+using Projects.DAL;
+using Projects.DAL.Domain;
+using AutoMapper;
 
 namespace Projects.BL
 {
     public class ProjectsService
     {
-        public void ChangeProjectManager(ManagerDTO manager, ProjectDTO project)
+        IUnitOfWork db { get; set; }
+
+        public ProjectsService(IUnitOfWork uow)
         {
-            throw new NotImplementedException();
+            this.db = uow;
+        }
+
+        public void ChangeProjectManager(int managerid, ProjectDTO project)
+        {
+            ProjectRepository pr;
         }
 
         public void DeleteProjects(IEnumerable<ProjectDTO> projects)
         {
-            throw new NotImplementedException();
+            foreach (ProjectDTO projectDto in projects)
+            {
+                db.projects.Delete(projectDto.Id);
+            }
         }
 
-        public void CreateProject(ProjectDTO project)
+        public void CreateProject(ProjectDTO projectDto)
         {
-            throw new NotImplementedException();
+            Project project = new Project
+            {
+                Name = projectDto.Name,
+                ManagerId = projectDto.ManagerId
+            };
+            db.projects.Create(project);
+        }
+
+        public IEnumerable<ProjectDTO> GetProjects()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Project, ProjectDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Project>, List<ProjectDTO>>(db.projects.GetAll());
+        }
+
+        public IEnumerable<ManagerDTO> GetManagers()
+        {
+            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Manager, ManagerDTO>()).CreateMapper();
+            return mapper.Map<IEnumerable<Manager>, List<ManagerDTO>>(db.managers.GetAll());
         }
     }
 }

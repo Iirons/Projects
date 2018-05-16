@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Projects.DAL.Repositories
 {
-    class ProjectRepository : IRepository<Project>
+    public class ProjectRepository : IRepository<Project>
     {
         SqlConnection sqlConnection;
 
@@ -31,9 +31,10 @@ namespace Projects.DAL.Repositories
 
         public void Create(Project item)
         {
-            string sqlString = "Insert into Project (Name,ManagerId) "
-            + "values(@Name,@ManagerId)";
+            string sqlString = "Insert into Project (Id,Name,ManagerId) "
+            + "values(@Id,@Name,@ManagerId)";
             SqlCommand command = new SqlCommand(sqlString, sqlConnection);
+            command.Parameters.AddWithValue("@Id", item.Id);
             command.Parameters.AddWithValue("@Name", item.Name);
             command.Parameters.AddWithValue("@ManagerId", item.ManagerId);
             command.ExecuteNonQuery();

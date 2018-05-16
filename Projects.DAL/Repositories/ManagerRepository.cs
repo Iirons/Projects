@@ -9,7 +9,7 @@ using System.Data;
 
 namespace Projects.DAL.Repositories
 {
-    class ManagerRepository:IRepository<Manager>
+    public class ManagerRepository:IRepository<Manager>
     {
         SqlConnection sqlConnection;
 
@@ -24,6 +24,15 @@ namespace Projects.DAL.Repositories
 
         }
 
+        public ManagerRepository(string connectionstring)
+        {
+
+            sqlConnection = new SqlConnection(connectionstring);
+
+            sqlConnection.Open();
+
+        }
+
         public void Close()
         {
             sqlConnection.Close();
@@ -31,8 +40,9 @@ namespace Projects.DAL.Repositories
 
         public void Create(Manager item)
         {
-            string sqlString = "Insert into Manager (Name) values(@Name)";
+            string sqlString = "Insert into Manager (Id,Name) values(@Id,@Name)";
             SqlCommand command = new SqlCommand(sqlString, sqlConnection);
+            command.Parameters.AddWithValue("@Id", item.Id);
             command.Parameters.AddWithValue("@Name", item.Name);
             command.ExecuteNonQuery();
 
