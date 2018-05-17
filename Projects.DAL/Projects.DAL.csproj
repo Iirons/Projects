@@ -83,6 +83,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DALUnitOfWork.cs" />
     <Compile Include="Domain\Manager.cs" />
     <Compile Include="Domain\Project.cs" />
     <Compile Include="IUnitOfWork.cs" />

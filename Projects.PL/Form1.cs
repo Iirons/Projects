@@ -16,5 +16,20 @@ namespace Projects.PL
         {
             InitializeComponent();
         }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DeleteButton_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void ChangeButton_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

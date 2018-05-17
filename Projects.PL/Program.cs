@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Ninject;
+using Ninject.Modules;
+using Ninject.
+using Projects.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +20,13 @@ namespace Projects.PL
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            NinjectModule projectmodule = new ProjectModule();
+            NinjectModule servicemodule = new ServiceModule();
+            var kernel = new StandardKernel(projectmodule, servicemodule);
+            Application.Run(kernel.Get<Form1>());
+
+            // внедрение зависимостей
+            
         }
     }
 }

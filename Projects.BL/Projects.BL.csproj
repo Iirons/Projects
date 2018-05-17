@@ -36,6 +36,9 @@
     <Reference Include="CommonServiceLocator, Version=2.0.3.0, Culture=neutral, PublicKeyToken=489b6accfaf20ef0, processorArchitecture=MSIL">
       <HintPath>..\packages\Unity.5.8.6\lib\net46\CommonServiceLocator.dll</HintPath>
     </Reference>
+    <Reference Include="Ninject, Version=3.3.4.0, Culture=neutral, PublicKeyToken=c7192dc5380945e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\Ninject.3.3.4\lib\net45\Ninject.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
@@ -70,6 +73,8 @@
   <ItemGroup>
     <Compile Include="DTO\ManagerDTO.cs" />
     <Compile Include="DTO\ProjectDTO.cs" />
+    <Compile Include="ServiceModule.cs" />
+    <Compile Include="Services\IProjectsService.cs" />
     <Compile Include="Services\ProjectsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

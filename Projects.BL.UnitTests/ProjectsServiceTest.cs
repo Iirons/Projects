@@ -26,7 +26,49 @@ namespace Projects.BL.UnitTests
         {
             var db = new Mock<TestUnitOfWork>();
             ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.ChangeProjectManager(1, new ProjectDTO(1, null, 0));
+            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0, "test", 0), new ProjectDTO(1, "test", 0) });
+            projectsService.CreateProject(new ProjectDTO(1, "test", 0));
+            projectsService.ChangeProjectManager(1, new ProjectDTO(0, "test", 1));
+            db.Object.Save();
+        }
+
+        [TestMethod]
+        public void ChangeProjectManagerException1Test()
+        {
+            var db = new Mock<TestUnitOfWork>();
+            ProjectsService projectsService = new ProjectsService(db.Object);
+            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0, "test", 0), new ProjectDTO(1, "test", 0) });
+            try
+            {
+                projectsService.ChangeProjectManager(1, new ProjectDTO(0, "test", 1));
+                db.Object.Save();
+                Assert.Fail();
+            }
+            catch (InvalidOperationException e)
+            {
+                db.Object.Save();
+            }
+            
+        }
+
+        [TestMethod]
+        public void ChangeProjectManagerException2Test()
+        {
+            var db = new Mock<TestUnitOfWork>();
+            ProjectsService projectsService = new ProjectsService(db.Object);
+            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0, "test", 0), new ProjectDTO(1, "test", 0) });
+            try
+            {
+                projectsService.CreateProject(new ProjectDTO(1, "sest", 0));
+                projectsService.ChangeProjectManager(1, new ProjectDTO(0, "test", 1));
+                db.Object.Save();
+                Assert.Fail();
+            }
+            catch (InvalidOperationException e)
+            {
+                db.Object.Save();
+            }
+
         }
 
         [TestMethod]
@@ -40,6 +82,7 @@ namespace Projects.BL.UnitTests
             };
             ProjectsService projectsService = new ProjectsService(db.Object);
             projectsService.DeleteProjects(projects);
+            db.Object.Save();
         }
 
         [TestMethod]
@@ -59,6 +102,7 @@ namespace Projects.BL.UnitTests
             var db = new Mock<TestUnitOfWork>();
             ProjectsService projectsService = new ProjectsService(db.Object);
             projectsService.GetProjects();
+            db.Object.Save();
         }
 
 
@@ -68,6 +112,7 @@ namespace Projects.BL.UnitTests
             var db = new Mock<TestUnitOfWork>();
             ProjectsService projectsService = new ProjectsService(db.Object);
             projectsService.GetManagers();
+            db.Object.Save();
         }
     }
 }

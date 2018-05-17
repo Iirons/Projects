@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Projects.BL.DTO;
+using Projects.BL.Services;
 using Projects.DAL.Repositories;
 using Projects.DAL;
 using Projects.DAL.Domain;
@@ -12,7 +13,7 @@ using AutoMapper;
 
 namespace Projects.BL
 {
-    public class ProjectsService
+    public class ProjectsService: IProjectsService
     {
         IUnitOfWork db { get; set; }
 
@@ -23,7 +24,14 @@ namespace Projects.BL
 
         public void ChangeProjectManager(int managerid, ProjectDTO project)
         {
-            ProjectRepository pr;
+            if(db.projects.Get(project.Id).Name == project.Name)
+            {
+                db.projects.Update(new Project { Id = project.Id, Name = project.Name, ManagerId = managerid });
+            }
+            else
+            {
+                throw new InvalidOperationException("Could not find this project");
+            }
         }
 
         public void DeleteProjects(IEnumerable<ProjectDTO> projects)
@@ -32,6 +40,7 @@ namespace Projects.BL
             {
                 db.projects.Delete(projectDto.Id);
             }
+
         }
 
         public void CreateProject(ProjectDTO projectDto)
