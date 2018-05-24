@@ -22,34 +22,30 @@ namespace Projects.BL
             this.db = uow;
         }
 
-        public void ChangeProjectManager(int managerid, ProjectDTO project)
+        public void ChangeProject(ProjectDTO project)
         {
-            if(db.projects.Get(project.Id).Name == project.Name)
+            if (db.projects.Get(project.Id) == null)
             {
-                db.projects.Update(new Project { Id = project.Id, Name = project.Name, ManagerId = managerid });
+                throw new Exception($"Project with id = {project.Id} not found");
             }
-            else
-            {
-                throw new InvalidOperationException("Could not find this project");
-            }
+            db.projects.Update(new Project(project.Id, project.Name, project.ManagerId, project.Description,
+                project.ProjectStart, project.ProjectEnd));
+            
         }
 
-        public void DeleteProjects(IEnumerable<ProjectDTO> projects)
+        public void DeleteProject(int id)
         {
-            foreach (ProjectDTO projectDto in projects)
+            if (db.projects.Get(id) == null)
             {
-                db.projects.Delete(projectDto.Id);
+                throw new Exception($"Project with id = {id} not found");
             }
-
+            db.projects.Delete(id);
         }
 
         public void CreateProject(ProjectDTO projectDto)
         {
-            Project project = new Project
-            {
-                Name = projectDto.Name,
-                ManagerId = projectDto.ManagerId
-            };
+            Project project = new Project(projectDto.Id, projectDto.Name, projectDto.ManagerId, projectDto.Description, 
+                projectDto.ProjectStart, projectDto.ProjectEnd);
             db.projects.Create(project);
         }
 
@@ -58,11 +54,6 @@ namespace Projects.BL
             var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Project, ProjectDTO>()).CreateMapper();
             return mapper.Map<IEnumerable<Project>, List<ProjectDTO>>(db.projects.GetAll());
         }
-
-        public IEnumerable<ManagerDTO> GetManagers()
-        {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Manager, ManagerDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Manager>, List<ManagerDTO>>(db.managers.GetAll());
-        }
+        
     }
 }

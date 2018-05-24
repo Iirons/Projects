@@ -9,11 +9,10 @@ namespace Projects.BL.Services
 {
     public interface IProjectsService
     {
-        void ChangeProjectManager(int managerid, ProjectDTO project);
-        void DeleteProjects(IEnumerable<ProjectDTO> projects);
+        void ChangeProject(ProjectDTO project);
+        void DeleteProject(int id);
         void CreateProject(ProjectDTO projectDto);
 
         IEnumerable<ProjectDTO> GetProjects();
-        IEnumerable<ManagerDTO> GetManagers();
     }
 }

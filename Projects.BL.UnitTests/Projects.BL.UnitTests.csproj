@@ -92,9 +92,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Moq\ManagerRepositoryTest.cs" />
-    <Compile Include="Moq\ProjectRepositoryTest.cs" />
-    <Compile Include="Moq\TestUnitOfWork.cs" />
     <Compile Include="ProjectsServiceTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

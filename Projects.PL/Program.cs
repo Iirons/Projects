@@ -1,6 +1,5 @@
 ﻿using Ninject;
 using Ninject.Modules;
-using Ninject.
 using Projects.BL;
 using System;
 using System.Collections.Generic;
@@ -24,9 +23,6 @@ namespace Projects.PL
             NinjectModule servicemodule = new ServiceModule();
             var kernel = new StandardKernel(projectmodule, servicemodule);
             Application.Run(kernel.Get<Form1>());
-
-            // внедрение зависимостей
-            
         }
     }
 }

@@ -10,9 +10,6 @@ namespace Projects.DAL
 {
     public interface IUnitOfWork
     {
-        IRepository<Manager> managers { get; }
         IRepository<Project> projects { get; }
-        void Save();
-
     }
 }

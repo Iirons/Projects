@@ -71,7 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DTO\ManagerDTO.cs" />
     <Compile Include="DTO\ProjectDTO.cs" />
     <Compile Include="ServiceModule.cs" />
     <Compile Include="Services\IProjectsService.cs" />

@@ -3,11 +3,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using Projects.BL;
 using Projects.BL.DTO;
+using Projects.BL.Services;
 using Projects.DAL;
 using Projects.DAL.Domain;
-using Projects.BL.UnitTests.Moq;
+using Projects.DAL.Repositories;
 using AutoMapper;
 using Moq;
+using System.Linq;
 
 namespace Projects.BL.UnitTests
 {
@@ -15,105 +17,74 @@ namespace Projects.BL.UnitTests
     public class ProjectsServiceTest
     {
 
-        [TestInitialize]
-        public void Setup()
-        {
+        private Mock<IRepository<Project>> mockRepository;
+        private Mock<IUnitOfWork> mockUow;
+        private IProjectsService projectsService;
 
+        public ProjectsServiceTest()
+        {
+            mockRepository = new Mock<IRepository<Project>>();
+            mockUow = new Mock<IUnitOfWork>();
+            mockUow.Setup(m => m.projects).Returns(mockRepository.Object);
+            projectsService = new ProjectsService(mockUow.Object);
         }
 
         [TestMethod]
-        public void ChangeProjectManagerTest()
+        public void ChangeProjectTest()
         {
-            var db = new Mock<TestUnitOfWork>();
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0, "test", 0), new ProjectDTO(1, "test", 0) });
-            projectsService.CreateProject(new ProjectDTO(1, "test", 0));
-            projectsService.ChangeProjectManager(1, new ProjectDTO(0, "test", 1));
-            db.Object.Save();
+            mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(new Project(1, "test", 1, "sososo", 
+                new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
+            projectsService.ChangeProject(new ProjectDTO(1, "test2", 3, "sososo", new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
+            mockRepository.Verify(m => m.Update(It.IsAny<Project>()), Times.Once);
         }
 
         [TestMethod]
-        public void ChangeProjectManagerException1Test()
+        public void ChangeProjectExceptionTest()
         {
-            var db = new Mock<TestUnitOfWork>();
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0, "test", 0), new ProjectDTO(1, "test", 0) });
-            try
-            {
-                projectsService.ChangeProjectManager(1, new ProjectDTO(0, "test", 1));
-                db.Object.Save();
-                Assert.Fail();
-            }
-            catch (InvalidOperationException e)
-            {
-                db.Object.Save();
-            }
-            
+            mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(() => null);
+            Assert.ThrowsException<Exception>(() => projectsService.ChangeProject(new ProjectDTO(1, "test2", 3, "sososo", 
+                new DateTime(2008, 02, 4), new DateTime(2008, 02, 4))));
         }
 
         [TestMethod]
-        public void ChangeProjectManagerException2Test()
+        public void DeleteProjectsExceptionTest()
         {
-            var db = new Mock<TestUnitOfWork>();
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0, "test", 0), new ProjectDTO(1, "test", 0) });
-            try
-            {
-                projectsService.CreateProject(new ProjectDTO(1, "sest", 0));
-                projectsService.ChangeProjectManager(1, new ProjectDTO(0, "test", 1));
-                db.Object.Save();
-                Assert.Fail();
-            }
-            catch (InvalidOperationException e)
-            {
-                db.Object.Save();
-            }
-
+            mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(() => null);
+            Assert.ThrowsException<Exception>(() => projectsService.DeleteProject(1));
         }
 
         [TestMethod]
         public void DeleteSelectedProjectsTest()
         {
-            var db = new Mock<TestUnitOfWork>();
-            IEnumerable<ProjectDTO> projects = new List<ProjectDTO>()
-            {
-                new ProjectDTO(1,null,0),
-                new ProjectDTO(2,null,0)
-            };
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.DeleteProjects(projects);
-            db.Object.Save();
+            mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(new Project(1, "test", 3, "sososo",
+                new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
+            int id = 1;
+            projectsService.DeleteProject(id);
+            mockRepository.Verify(m => m.Delete(id), Times.Once);
         }
 
         [TestMethod]
-        public void CreateProjectsTest()
+        public void CreateProjectTest()
         {
-
-            var db = new Mock<TestUnitOfWork>();
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.DeleteProjects(new List<ProjectDTO> { new ProjectDTO(0,"test",0), new ProjectDTO(1, "test", 0) });
-            projectsService.CreateProject(new ProjectDTO(1, "test", 0));
-            db.Object.Save();
+            mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(() => null);
+            projectsService.CreateProject(new ProjectDTO(1,"test",3,"sososo", new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
+            mockRepository.Verify(m => m.Create(It.IsAny<Project>()), Times.Once);
         }
 
         [TestMethod]
         public void GetProjectsTest()
         {
-            var db = new Mock<TestUnitOfWork>();
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.GetProjects();
-            db.Object.Save();
+            mockRepository.Setup(m => m.GetAll()).Returns(new List<Project>()
+            {
+                new Project(1, "proj1", 1, "country1",new DateTime(2008,02,4),new DateTime(2008,02,4)),
+                new Project(2, "proj2", 1, "country2",new DateTime(2008,02,4),new DateTime(2008,02,4)),
+                new Project(3, "proj3", 2, "country3",new DateTime(2008,02,4),new DateTime(2008,02,4))
+            });
+            var projects = projectsService.GetProjects();
+            Assert.AreEqual(3, projects.Count());
         }
 
 
-        [TestMethod]
-        public void GetManagersTest()
-        {
-            var db = new Mock<TestUnitOfWork>();
-            ProjectsService projectsService = new ProjectsService(db.Object);
-            projectsService.GetManagers();
-            db.Object.Save();
-        }
     }
 }
 

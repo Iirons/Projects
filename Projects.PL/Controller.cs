@@ -18,12 +18,7 @@ namespace Projects.PL
         {   
             this.bl = ps;
         }
-
-        IEnumerable<ManagerModel> GetManagers()
-        {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ManagerDTO, ManagerModel>()).CreateMapper();
-            return mapper.Map<IEnumerable<ManagerDTO>, List<ManagerModel>>(bl.GetManagers());
-        }
+        
 
         IEnumerable<ProjectModel> GetProjects()
         {

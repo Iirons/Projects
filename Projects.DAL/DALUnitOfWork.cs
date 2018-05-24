@@ -13,20 +13,6 @@ namespace Projects.DAL
     public class DALUnitOfWork : IUnitOfWork
     {
         ProjectRepository ProjectRepository;
-        ManagerRepository ManagerRepository;
-
-        public IRepository<Manager> managers
-        {
-            get
-            {
-                if (ManagerRepository == null)
-                {
-                    ManagerRepository = new ManagerRepository();
-                }
-                return ManagerRepository;
-            }
-
-        }
 
         public IRepository<Project> projects
         {
@@ -38,12 +24,6 @@ namespace Projects.DAL
                 }
                 return ProjectRepository;
             }
-        }
-
-        public void Save()
-        {
-            projects.Close();
-            managers.Close();
         }
     }
 }

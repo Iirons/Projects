@@ -27,3 +27,5 @@ C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Unity.Interception
 C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Unity.RegistrationByConvention.pdb
 C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Unity.ServiceLocation.pdb
 C:\Users\Олег\source\repos\Projects\Projects.BL\obj\Debug\Projects.BL.csproj.CopyComplete
+C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Ninject.dll
+C:\Users\Олег\source\repos\Projects\Projects.BL\bin\Debug\Ninject.xml

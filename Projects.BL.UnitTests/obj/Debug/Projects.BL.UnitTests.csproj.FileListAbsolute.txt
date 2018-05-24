@@ -49,3 +49,5 @@ C:\Users\Олег\source\repos\Projects\Projects.BL.UnitTests\bin\Debug\Unity.In
 C:\Users\Олег\source\repos\Projects\Projects.BL.UnitTests\bin\Debug\Unity.Interception.Configuration.pdb
 C:\Users\Олег\source\repos\Projects\Projects.BL.UnitTests\bin\Debug\Unity.RegistrationByConvention.pdb
 C:\Users\Олег\source\repos\Projects\Projects.BL.UnitTests\bin\Debug\Unity.ServiceLocation.pdb
+C:\Users\Олег\source\repos\Projects\Projects.BL.UnitTests\bin\Debug\Ninject.dll
+C:\Users\Олег\source\repos\Projects\Projects.BL.UnitTests\bin\Debug\Ninject.xml

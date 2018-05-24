@@ -8,8 +8,6 @@ C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.csproj
 C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.csproj.CoreCompileInputs.cache
 C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.exe
 C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.pdb
-C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects.mdf
-C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects_log.ldf
 C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\AutoMapper.dll
 C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\CommonServiceLocator.dll
 C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects.BL.dll
@@ -33,3 +31,6 @@ C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Unity.Registration
 C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Unity.ServiceLocation.pdb
 C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Projects.DAL.pdb
 C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.csproj.CopyComplete
+C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Ninject.dll
+C:\Users\Олег\source\repos\Projects\Projects.PL\bin\Debug\Ninject.xml
+C:\Users\Олег\source\repos\Projects\Projects.PL\obj\Debug\Projects.PL.AddForm.resources
