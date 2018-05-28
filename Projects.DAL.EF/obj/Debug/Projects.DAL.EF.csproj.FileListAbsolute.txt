@@ -1,0 +1,16 @@
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\obj\Debug\Projects.DAL.EF.csprojAssemblyReference.cache
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\obj\Debug\Projects.DAL.EF.csproj.CoreCompileInputs.cache
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\Projects.mdf
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\Projects_log.ldf
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\Projects.DAL.EF.dll.config
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\Projects.DAL.EF.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\Projects.DAL.EF.pdb
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\EntityFramework.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\EntityFramework.xml
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\ru\EntityFramework.resources.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\obj\Debug\Projects.DAL.EF.csproj.CopyComplete
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\obj\Debug\Projects.DAL.EF.dll
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\obj\Debug\Projects.DAL.EF.pdb
+C:\Users\Олег\source\repos\Projects\Projects.DAL.EF\bin\Debug\ru\EntityFramework.SqlServer.resources.dll

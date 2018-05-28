@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Projects.BL.DTO;
 using Projects.BL.Services;
-using Projects.DAL.Repositories;
+using Projects.DAL.EF.Repository;
 using Projects.DAL;
-using Projects.DAL.Domain;
+using Projects.DAL.EF;
 using AutoMapper;
 
 namespace Projects.BL
@@ -24,12 +24,18 @@ namespace Projects.BL
 
         public void ChangeProject(ProjectDTO project)
         {
-            if (db.projects.Get(project.Id) == null)
+            Project prj = db.projects.Get(project.Id);
+            if (prj == null)
             {
                 throw new Exception($"Project with id = {project.Id} not found");
             }
-            db.projects.Update(new Project(project.Id, project.Name, project.ManagerId, project.Description,
-                project.ProjectStart, project.ProjectEnd));
+            prj.Name = project.Name;
+            prj.Description = project.Description;
+            prj.ManagerId = project.ManagerId;
+            prj.ProjectStart = project.ProjectStart;
+            prj.ProjectEnd = project.ProjectEnd;
+            db.projects.Update(prj);
+            db.Save();
             
         }
 
@@ -40,6 +46,7 @@ namespace Projects.BL
                 throw new Exception($"Project with id = {id} not found");
             }
             db.projects.Delete(id);
+            db.Save();
         }
 
         public void CreateProject(ProjectDTO projectDto)
@@ -47,12 +54,12 @@ namespace Projects.BL
             Project project = new Project(projectDto.Id, projectDto.Name, projectDto.ManagerId, projectDto.Description, 
                 projectDto.ProjectStart, projectDto.ProjectEnd);
             db.projects.Create(project);
+            db.Save();
         }
 
         public IEnumerable<ProjectDTO> GetProjects()
         {
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<Project, ProjectDTO>()).CreateMapper();
-            return mapper.Map<IEnumerable<Project>, List<ProjectDTO>>(db.projects.GetAll());
+            return db.projects.GetAll().Select(x => new ProjectDTO(x.Id,x.Name,x.ManagerId,x.Description,x.ProjectStart,x.ProjectEnd));
         }
         
     }

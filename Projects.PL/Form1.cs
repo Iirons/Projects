@@ -9,15 +9,15 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Projects.BL.Services;
 using Projects.BL.DTO;
-using AutoMapper;
 using Projects.PL.Models;
+
 
 namespace Projects.PL
 {
     public partial class Form1 : Form
     {
         IProjectsService ps;
-        List<ProjectModel> pm;
+        IEnumerable<ProjectModel> pm;
         public Form1(IProjectsService service)
         {
             this.ps = service;
@@ -72,12 +72,12 @@ namespace Projects.PL
             foreach (DataGridViewRow r in dataGridView1.SelectedRows)
             {
                 ProjectDTO project = new ProjectDTO(
-                    Convert.ToInt32(dataGridView1[0,r.Index].Value),
+                    Convert.ToInt32(dataGridView1[0,r.Index].Value.ToString()),
                     dataGridView1[1, r.Index].Value.ToString(),
-                    Convert.ToInt32(dataGridView1[2, r.Index].Value),
-                    dataGridView1[3, r.Index].Value.ToString(),
-                    Convert.ToDateTime(dataGridView1[4, r.Index].Value),
-                    Convert.ToDateTime(dataGridView1[5, r.Index].Value));
+                    Convert.ToInt32(dataGridView1[3, r.Index].Value.ToString()),
+                    dataGridView1[2, r.Index].Value.ToString(),
+                    Convert.ToDateTime(dataGridView1[4, r.Index].Value.ToString()),
+                    Convert.ToDateTime(dataGridView1[5, r.Index].Value.ToString()));
                 ps.ChangeProject(project);
             }
         }
@@ -85,8 +85,7 @@ namespace Projects.PL
         private void Form1_Load(object sender, EventArgs e)
         {
             IEnumerable<ProjectDTO> projects = ps.GetProjects();
-            var mapper = new MapperConfiguration(cfg => cfg.CreateMap<ProjectDTO, ProjectModel>()).CreateMapper();
-            pm = mapper.Map<IEnumerable<ProjectDTO>, List<ProjectModel>>(projects);
+            pm = projects.Select(x => new ProjectModel(x.Id, x.Name, x.ManagerId, x.Description, x.ProjectStart, x.ProjectEnd));
             dataGridView1.ColumnCount = 6;
             dataGridView1.Columns[0].Visible=false;
             dataGridView1.Columns[1].Name = "Name";

@@ -20,7 +20,7 @@ namespace Projects.PL
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             NinjectModule projectmodule = new ProjectModule();
-            NinjectModule servicemodule = new ServiceModule();
+            NinjectModule servicemodule = new ServiceModule("DefaultConnection");
             var kernel = new StandardKernel(projectmodule, servicemodule);
             Application.Run(kernel.Get<Form1>());
         }

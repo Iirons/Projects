@@ -15,8 +15,7 @@ namespace Projects.DAL.Repositories
 
         public ProjectRepository()
         {
-            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=
-            C:\Users\Олег\source\repos\Projects\Projects.DAL\Projects.mdf;Integrated Security=True";
+            string connectionstring = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Олег\source\repos\Projects\Projects.DAL\Projects.mdf;Integrated Security=True";
 
             sqlConnection = new SqlConnection(connectionstring);
         }

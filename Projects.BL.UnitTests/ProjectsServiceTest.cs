@@ -4,9 +4,8 @@ using System.Collections.Generic;
 using Projects.BL;
 using Projects.BL.DTO;
 using Projects.BL.Services;
-using Projects.DAL;
-using Projects.DAL.Domain;
-using Projects.DAL.Repositories;
+using Projects.DAL.EF;
+using Projects.DAL.EF.Repository;
 using AutoMapper;
 using Moq;
 using System.Linq;
@@ -30,7 +29,7 @@ namespace Projects.BL.UnitTests
         }
 
         [TestMethod]
-        public void ChangeProjectTest()
+        public void ChangeProject_ShouldUpdateOnce()
         {
             mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(new Project(1, "test", 1, "sososo", 
                 new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
@@ -39,7 +38,7 @@ namespace Projects.BL.UnitTests
         }
 
         [TestMethod]
-        public void ChangeProjectExceptionTest()
+        public void ChangeProjectTest_ShouldThrowException()
         {
             mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(() => null);
             Assert.ThrowsException<Exception>(() => projectsService.ChangeProject(new ProjectDTO(1, "test2", 3, "sososo", 
@@ -47,14 +46,14 @@ namespace Projects.BL.UnitTests
         }
 
         [TestMethod]
-        public void DeleteProjectsExceptionTest()
+        public void DeleteProjectsTest_ShouldThrowException()
         {
             mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(() => null);
             Assert.ThrowsException<Exception>(() => projectsService.DeleteProject(1));
         }
 
         [TestMethod]
-        public void DeleteSelectedProjectsTest()
+        public void DeleteSelectedProjectsTest_ShouldDeleteOnce()
         {
             mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(new Project(1, "test", 3, "sososo",
                 new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
@@ -64,7 +63,7 @@ namespace Projects.BL.UnitTests
         }
 
         [TestMethod]
-        public void CreateProjectTest()
+        public void CreateProjectTest_ShouldCreateOnce()
         {
             mockRepository.Setup(m => m.Get(It.IsAny<Int32>())).Returns(() => null);
             projectsService.CreateProject(new ProjectDTO(1,"test",3,"sososo", new DateTime(2008, 02, 4), new DateTime(2008, 02, 4)));
@@ -72,7 +71,7 @@ namespace Projects.BL.UnitTests
         }
 
         [TestMethod]
-        public void GetProjectsTest()
+        public void GetProjectsTest_ShouldReturnProjectCount()
         {
             mockRepository.Setup(m => m.GetAll()).Returns(new List<Project>()
             {
